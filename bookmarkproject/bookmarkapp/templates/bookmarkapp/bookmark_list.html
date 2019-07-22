@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<style>
+    a{text-decoration: none;}
+
+
+</style>
+</head>
+
+<body>
+    
+    
+        <a href = "{% url 'add' %}">Add Bookmark</a>
+    
+    
+    <table class = "table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Site</th>
+                <th scope="col">URL</th>
+                <th scope="col">Modify</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bookmark in object_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'detail' pk=bookmark.id %}">{{bookmark.site_name}}</a></td>
+                <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
+                <td><a href="{% url 'update' pk=bookmark.id %}" class="btn btn-success btn-sm">Modify</a></td>
+                <td><a href="{% url 'delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+            {%endfor%}    
+
+                
+        </tbody>
+            
+    </table>
+    
+</body>
+</html>
